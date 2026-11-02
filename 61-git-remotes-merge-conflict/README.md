@@ -11,7 +11,7 @@ Prima di eseguire ogni operazione sul worktree o sul repository,
 si verifichi lo stato del repository con `git status`.
 
 1. Si cloni localmente il repository
-
+```
 PS C:\Users\matti> git clone https://github.com/APICe-at-DISI/OOP-git-merge-conflict-test.git
 Cloning into 'OOP-git-merge-conflict-test'...
 remote: Enumerating objects: 24, done.
@@ -27,9 +27,10 @@ PS C:\Users\matti\OOP-git-merge-conflict-test> git status
 On branch master
 Your branch is up to date with 'origin/master'.
 nothing to commit, working tree clean
+```
 
 2. Ci si assicuri di avere localmente entrambi i branch remoti
-
+```
 PS C:\Users\matti\OOP-git-merge-conflict-test> git branch -v
 * master 2f617a5 switch to Java 25 IO.println
 
@@ -45,9 +46,10 @@ PS C:\Users\matti\OOP-git-merge-conflict-test> git status
 On branch feature
 Your branch is up to date with 'origin/feature'.
 nothing to commit, working tree clean
+```
 
 3. Si faccia il merge di `feature` dentro `master`, ossia: si posizioni la `HEAD` su `master` e da qui si esegua il merge di `feature`
-
+```
 PS C:\Users\matti\OOP-git-merge-conflict-test> git checkout master
 Switched to branch 'master'
 Your branch is up to date with 'origin/master'.
@@ -72,12 +74,13 @@ Unmerged paths:
   (use "git add <file>..." to mark resolution)
         both modified:   HelloWorld.java
 no changes added to commit (use "git add" and/or "git commit -a")
+```
 
 4. Si noti che viene generato un **merge conflict**!
 
 5. Si risolva il merge conflict come segue:
    - Il programma Java risultante deve stampare sia il numero di processori disponibili (funzionalità presente su `master`) che il nome dell'autore del file (funzionalità presente su `feature`)
-
+```
 PS C:\Users\matti\OOP-git-merge-conflict-test> cat HelloWorld.java
 final String AUTHOR = "Danilo Pianini";
 int procNumber() {
@@ -111,21 +114,23 @@ PS C:\Users\matti\OOP-git-merge-conflict-test> git log --all --graph --oneline
 |/
 * d956df6 Create .gitignore
 * 700ee0b Create HelloWorld
+```
 
 6. Si crei un nuovo repository nel proprio github personale
 
 7. Si aggiunga il nuovo repository creato come **remote** e si elenchino i remote
-
+```
 PS C:\Users\matti\OOP-git-merge-conflict-test> git remote add mine https://github.com/matti-vita/61-git-remotes-merge-conflict.git
 PS C:\Users\matti\OOP-git-merge-conflict-test> git remote -v
 mine    https://github.com/matti-vita/61-git-remotes-merge-conflict.git (fetch)
 mine    https://github.com/matti-vita/61-git-remotes-merge-conflict.git (push)
 origin  https://github.com/APICe-at-DISI/OOP-git-merge-conflict-test.git (fetch)
 origin  https://github.com/APICe-at-DISI/OOP-git-merge-conflict-test.git (push)
+```
 
 8. Si faccia push del branch `master` sul proprio repository
 9. Si setti il branch remoto `master` del nuovo repository come *upstream* per il proprio branch `master` locale
-
+```
 PS C:\Users\matti\OOP-git-merge-conflict-test> git push -u mine master
 Enumerating objects: 27, done.
 Counting objects: 100% (27/27), done.
@@ -137,3 +142,4 @@ remote: Resolving deltas: 100% (6/6), done.
 To https://github.com/matti-vita/61-git-remotes-merge-conflict.git
  * [new branch]      master -> master
 branch 'master' set up to track 'mine/master'.
+```
